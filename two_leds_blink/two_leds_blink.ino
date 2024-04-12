@@ -1,4 +1,5 @@
 // Tentando imitar uma sirene de polícia XD.
+#define DELAY_TIME 200
 
 int led1Pin = 4;
 int led2Pin = 5;
@@ -9,11 +10,18 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(led1Pin, HIGH);
-  digitalWrite(led2Pin, LOW);
-  delay(200);
+  setLed(HIGH); // Ligando o led 1 e desligando o led 2.
+  setLed(LOW); // Desligando o led 1 e ligando o led 2.
+}
 
-  digitalWrite(led1Pin, LOW);
-  digitalWrite(led2Pin, HIGH);
-  delay(200);
+void setLed(int led1) {
+  digitalWrite(led1Pin, led1);
+
+  if (led1 == HIGH) {
+    digitalWrite(led2Pin, LOW);
+  } else {
+    digitalWrite(led2Pin, HIGH);
+
+    delay(DELAY_TIME);
+  }
 }
